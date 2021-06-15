@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('customer')->group(function () {
-    Route::get('index', function () {
-        return view('/modules/customer/index');
-    });
-    
+    Route::get('index', [UserController::class,'index']);
+    Route::get('{id}/show', [UserController::class, 'show'])->name('user.show');
+    Route::get('create', [UserController::class, 'create'])->name('user.create');
+    Route::post('store', [UserController::class, 'store'])->name('user.store');
+    Route::get('{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::patch('{id}/update', [UserController::class, 'pat'])
 });

@@ -1,8 +1,7 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Index</title>
+    <title>Show detail</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,31 +12,14 @@
 </head>
 <body>
 <div class="container">
-    <div class="card" style="margin-top: 40px">
-        <label for="card-title"><h3>List Customer</h3></label>
+    <div class="card">
         <div class="card-body">
-            <table class="row">
-                <tr class="col-sm">
-                    <th>No.</th>
-                    <th>Full name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr>
-                @forelse($users as $key=>$value)
-                    <tr class="col-sm">
-                        <td>{{$value['id']}}</td>
-                        <td>{{ $value['name'] }}</td>
-                        <td>{{ $value['phone'] }}</td>
-                        <td>{{ $value['email'] }}</td>
-                        <td><a href="{{ route('user.show', ['id' => $value['id']])}}">Detail</a>
-                            | <a href="{{ route('user.create') }}">Add</a>
-                            | <a href="#">Delete</a></td>
-                    </tr>
-                    @empty
-                        <p>No data</p>
-                @endforelse
-            </table>
+            <h5 class="card-title">Show detail</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Name: {{ $users[$id]['name'] }}</h6>
+            <p class="card-text">Phone: {{ $users[$id]['phone'] }}</p>
+            <p class="card-text">Email: {{ $users[$id]['email'] }}</p>
+            <a href="/customer/index" class="card-link">Back list</a>
+            <a href="{{ route('user.edit', [$users[$id]['id']]) }}" class="card-link">Edit user</a>
         </div>
     </div>
 </div>
