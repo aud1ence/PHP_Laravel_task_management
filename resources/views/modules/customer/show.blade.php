@@ -12,8 +12,8 @@
 </head>
 <body>
 <div class="container">
-    <div class="card">
-        <div class="card-body">
+    <div class="card" style="margin-top: 40px; width: 400px; margin-left: 30%">
+        <div class="card-body" style="text-align: center">
             <h5 class="card-title">Show detail</h5>
             <h6 class="card-subtitle mb-2 text-muted">Name: {{ $users[$id]['name'] }}</h6>
             <p class="card-text">Phone: {{ $users[$id]['phone'] }}</p>

@@ -16,7 +16,8 @@
     <div class="card" style="margin-top: 40px">
         <label for="card-title"><h3>List Customer</h3></label>
         <div class="card-body">
-            <table class="row">
+            <table class="table">
+                <thead class="thead-dark">
                 <tr class="col-sm">
                     <th>No.</th>
                     <th>Full name</th>
@@ -24,6 +25,8 @@
                     <th>Email</th>
                     <th>Action</th>
                 </tr>
+                </thead>
+
                 @forelse($users as $key=>$value)
                     <tr class="col-sm">
                         <td>{{$value['id']}}</td>

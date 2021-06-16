@@ -89,7 +89,7 @@ class UserController extends Controller
         ];
         return view('/modules/customer/edit', compact('users', 'id'));
     }
-    
+
     public function update(Request $request, $id)
     {
         //
