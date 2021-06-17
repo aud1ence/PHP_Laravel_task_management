@@ -30,7 +30,7 @@
     <h1 class="title is-1" style="font-weight: 150; font-size: 84px">Task Management</h1>
     <div class="subtitle">
         <div class="d-flex justify-content-around" style="margin-top: 20%">
-            <h2 class="subtitle is-4"><a href="#">Add new task</a></h2>
+            <h2 class="subtitle is-4"><a href="{{ route('tasks.create') }}">Add new task</a></h2>
 
             <h2 class="subtitle is-4"><a href="{{ route('tasks.index') }}">Tasks list</a></h2>
         </div>

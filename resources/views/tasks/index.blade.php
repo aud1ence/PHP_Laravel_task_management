@@ -53,7 +53,7 @@
                             <td>{{ $task->title }}</td>
                             <td>{{ $task->content }}</td>
                             <td>{{ $task->due_date }}</td>
-                            <td>{{ $task->image }}</td>
+                            <td><img src="{{asset("storage/uploads/$task->image")}}" alt="" width="80" height="80"></td>
                         </tr>
                     @empty
                         <tr>
