@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Task Manager</title>
+    <title>Index Tasks</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,16 +27,49 @@
 </head>
 <body>
 <div class="container" style="margin-top: 10%">
-    <h1 class="title is-1" style="font-weight: 150; font-size: 84px">Task Management</h1>
+    <h1 class="title is-1" style="font-weight: 150; font-size: 84px">Tasks List</h1>
     <div class="subtitle">
-        <div class="d-flex justify-content-around" style="margin-top: 20%">
-            <h2 class="subtitle is-4"><a href="#">Add new task</a></h2>
 
-            <h2 class="subtitle is-4"><a href="{{ route('tasks.index') }}">Tasks list</a></h2>
-        </div>
+        @if(!isset($tasks))
+            <h4 class="subtitle is-4">Not data</h4>
+        @else
+            <h2 class="subtitle is-4"><a class="is-primary" href="{{ route('master') }}"> < Back</a></h2>
+
+            <div class="card">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse($tasks as $key => $task)
+                        <tr>
+                            <td scope="row">{{ ++$key }}</td>
+                            <td>{{ $task->title }}</td>
+                            <td>{{ $task->content }}</td>
+                            <td>{{ $task->due_date }}</td>
+                            <td>{{ $task->image }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5"><h4 class="subtitle is-4">Not tasks here!</h4></td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+            </div>
+        @endif
+{{--            <div class="d-flex justify-content-around" style="margin-top: 20%">--}}
+
+{{--                <h2 class="subtitle is-4"><a href="">Tasks list</a></h2>--}}
+{{--            </div>--}}
     </div>
 </div>
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
