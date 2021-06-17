@@ -34,13 +34,13 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $file = $request->image;
-        dd($file($request->file('image')->getClientOriginalName());
+//        $file = $request->image;
+//        dd($file($request->file('image')->getClientOriginalName());
 
 //        dd($request->all());
         $task = new Task();
@@ -48,16 +48,21 @@ class TaskController extends Controller
         $task->content = $request->content_input;
         $task->due_date = $request->due_date;
         $file = $request->image;
-//
+
         if (!$request->hasFile('image')) {
             $task->image = $file;
+            if (!$request->file('image')->getSize()) {
+                $message1 = "Please choose different image";
+                Session::flash('image_false', $message1);
+                return redirect()->route('tasks.create', compact('message1'));
+            }
         } else {
 //            // Lay phan mo rong cua ten anh
             $fileExtension = $file->getClientOriginalExtension();
 //            // Convert ten anh
-            $fileName = date('Y-m-d_h:i:s') . "_" . $request->title .  ".$fileExtension";
+            $fileName = date('Y-m-d_h:i:s') . "_" . $request->title . ".$fileExtension";
 //            $fileName = time() . "_" . $request->title .  ".$fileExtension";
-//
+
 ////            dd($fileName);
 //            // Luu anh vao folder uploads
             $request->file('image')->storeAs('public/uploads', $fileName);
@@ -77,7 +82,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -88,7 +93,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -99,8 +104,8 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -111,7 +116,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

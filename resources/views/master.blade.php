@@ -27,7 +27,7 @@
 </head>
 <body>
 <div class="container" style="margin-top: 10%">
-    <h1 class="title is-1" style="font-weight: 150; font-size: 84px">Task Management</h1>
+    <h1 class="title is-1" style="font-weight: 150; font-size: 84px; letter-spacing: 15px">Task Management</h1>
     <div class="subtitle">
         <div class="d-flex justify-content-around" style="margin-top: 20%">
             <h2 class="subtitle is-4"><a href="{{ route('tasks.create') }}">Add new task</a></h2>

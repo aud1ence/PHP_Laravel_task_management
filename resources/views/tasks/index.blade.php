@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Index Tasks</title>
+    <title>Show task</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-<div class="container" style="margin-top: 10%">
+<div class="container" style="margin-top: 4%">
     <h1 class="title is-1" style="font-weight: 150; font-size: 84px">Tasks List</h1>
     <div class="subtitle">
 
