@@ -1,4 +1,3 @@
-<?php //dd(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,14 +14,20 @@
 <body>
 <div class="container">
     <div class="block">
+
         <div class="card" style="width: 500px; margin-left: 30%; margin-top: 20px">
-            <form action="" method="post">
+            @if(\Illuminate\Support\Facades\Session::has('login-fail'))
+                <div class="login-fail">
+                    <p class="text-danger">{{ \Illuminate\Support\Facades\Session::get('login-fail') }}</p>
+                </div>
+            @endif
+            <form action="{{ route('user.login') }}" method="post">
                 @csrf
                 <div class="card-content">
                     <div class="content">
                         <div class="field">
                             <p class="control has-icons-left has-icons-right">
-                                <input class="input" type="email" placeholder="Email" name="email">
+                                <input class="input" type="text" placeholder="Email" name="email">
                                 <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>

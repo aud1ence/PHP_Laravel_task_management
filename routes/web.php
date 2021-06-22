@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('login', [AuthController::class, 'showFormLogin'])->name('auth.showFormLogin');
-Route::post('login', [AuthController::class, 'checkLogin'])->name('auth.checkLogin')->middleware('checkLogin');
+Route::get('login', [AuthController::class, 'showFormLogin'])->name('show.login');
+Route::post('login', [AuthController::class, 'login'])->name('user.login');
 
 //Route::group(['middleware' => 'checkLogin'], fun  ction () {
 //Route::middleware('auth')->prefix('test')->group(function () {

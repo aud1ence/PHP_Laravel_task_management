@@ -12,19 +12,19 @@ class AuthController extends Controller
         return view('login');
     }
 
-    public function checkLogin(Request $request)
+    public function login(Request $request)
     {
-//        dd($request->email);
-        if (isset($request->email) && isset($request->password)) {
-            $email = $request->email;
-            $password = $request->password;
+            $email = $request->input('email') ;
+            $password = $request->input('password') ;
 
-            if ($email == 'ngan@gmail.com' && $password == '123') {
-                return redirect()->route('user.index');
-            } else {
-                return redirect()->route('login');
+            if ($email == 'test' && $password == '123') {
+                $request->session()->push('login', true);
+                return redirect()->route('tasks.index');
             }
+            $message = 'Login failed. Email or password wrong';
+            $request->session()->flash('login-fail', $message);
+
+            return view('login');
         }
 
-    }
 }
