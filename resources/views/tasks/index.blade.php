@@ -34,7 +34,9 @@
             <h4 class="subtitle is-4">Not data</h4>
         @else
             <h2 class="subtitle is-4"><a class="is-primary" href="{{ route('master') }}"> < Back</a></h2>
-
+            @if(Session::has('create_success'))
+                <div class="alert-success"><p>{{Session::get('create_success')}}</p></div>
+            @endif
             <div class="card">
                 <table class="table">
                     <thead class="thead-dark">

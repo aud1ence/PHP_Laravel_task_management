@@ -28,23 +28,57 @@
                 <div class="field">
                     <label class="label">Task title</label>
                     <div class="control">
-                        <input class="input" type="text" name="title">
+                        <input class="form-control @if($errors->has('title')) is-invalid @endif " type="text"
+                               value="{{ old('title') }}" name="title"
+                               required>
+                        @if($errors->has('title'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('title')  }}
+                            </div>
+                        @endif
                     </div>
                     <label class="label">Task content</label>
                     <div class="control">
-                        <textarea class="textarea" name="content_input"></textarea>
+                        <textarea class="textarea" name="content">{{ old('content') }}</textarea>
+                        @if($errors->has('content'))
+                            <div class="invalid-feedback" style="display: block">
+                                {{ $errors->first('content')  }}
+                            </div>
+                        @endif
                     </div>
                     <label class="label">Due Date</label>
                     <div class="control">
                         <input class="input" type="date" name="due_date" placeholder="mm/dd/yyyy">
+                        <div class="error-message">
+                            @if ($errors->any())
+                                @foreach($errors->all() as $nameError)
+                                    <p style="color:red">{{ $nameError }}</p>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        @if($errors->has('due_date'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('due_date')  }}
+                            </div>
+                        @endif
                     </div>
                     <label class="label">File name</label>
                     {{--                    <div class="d-flex justify-content-around">--}}
-                    <div class="alert-danger"><p>{{ $message1 ?? 'Please choose different image' }}</p></div>
-
+                    @if(Session::has('image_false'))
+                        <div class="alert-danger"><p>{{Session::get('image_false')}}</p></div>
+                    @endif
+                    @if(isset($test))
+                        <div class="alert-danger"><p>{{ $test }} </p></div>
+                    @endif
                     <div class="file has-name">
                         <label class="file-label">
                             <input class="file-input" type="file" name="image">
+                            @if($errors->has('image'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('image')  }}
+                                </div>
+                            @endif
                             <span class="file-cta">
       <span class="file-icon">
         <i class="fas fa-upload"></i>
