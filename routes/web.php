@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -46,3 +47,8 @@ Route::prefix('tasks')->group(function () {
     Route::delete('{photo}/destroy', [TaskController::class, 'destroy'])->name('tasks.destroy');
 });
 //});
+
+Route::prefix('products')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('products.index');
+    Route::get('{id}/show', [ProductController::class, 'show'])->name('products.show');
+});
