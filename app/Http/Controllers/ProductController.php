@@ -27,6 +27,7 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->vote = $request->input('vote');
+        $product->view_count = 1;
 
         $file = $request->image;
         if (!$request->hasFile('image')) {

@@ -14,33 +14,34 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-            $email = $request->input('email') ;
-            $password = $request->input('password') ;
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-            if ($email == 'test' && $password == '123') {
-                $request->session()->push('login', true);
-                return redirect()->route('master');
-            }
-            $message = 'Login failed. Email or password wrong';
-            $request->session()->flash('login-fail', $message);
+        if ($email == 'test' && $password == '123') {
+            $request->session()->push('login', true);
+//            dd($request->session());
+            return redirect()->route('master');
+        }
+        $message = 'Login failed. Email or password wrong';
+        $request->session()->flash('login-fail', $message);
 
-            return view('login');
+        return view('login');
+    }
+
+    public function showMaster(Request $request)
+    {
+        if ($request->session()->has('login') && $request->session()->get('login')) {
+            return view('master');
         }
 
-        public function showMaster(Request $request)
-        {
-            if ($request->session()->has('login') && $request->session()->get('login')) {
-                return view('master');
-            }
+        $message = 'Please login';
+        $request->session()->flash('not-login', $message);
+        return view('login');
+    }
 
-            $message = 'Please login';
-            $request->session()->flash('not-login', $message);
-            return view('login');
-        }
-
-        public function logout(Request $request)
-        {
-            $request->session()->flush();
-            return view('welcome');
-        }
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return view('welcome');
+    }
 }

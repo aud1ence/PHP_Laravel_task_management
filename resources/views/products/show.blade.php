@@ -5,7 +5,8 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                <div class="col-md-6">
+                    <img class="card-img-top mb-5 mb-md-0" src="{{asset("storage/products/$product->image")}}" alt="..." /></div>
                 <div class="col-md-6">
                     <div class="small mb-1">{{$product->id}}</div>
                     <h1 class="display-5 fw-bolder">{{$product->name}}</h1>
@@ -42,6 +43,30 @@
                                 <h5 class="fw-bolder">{{ $product->name }}</h5>
                                 <!-- Product price-->
                                 {{ $product->price }}
+                                <p class="text-success">View: {{ $product->view_count }}</p>
+                            </div>
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                @if($product->vote == 1)
+                                    <div class="bi-star-fill"></div>
+                                @elseif($product->vote == 2)
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                @elseif($product->vote == 3)
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                @elseif($product->vote == 4)
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                @else
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                @endif
                             </div>
                         </div>
                         <!-- Product actions-->
@@ -50,7 +75,6 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Sale badge-->
@@ -81,6 +105,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Sale badge-->

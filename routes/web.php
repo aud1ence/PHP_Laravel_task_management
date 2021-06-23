@@ -18,25 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthController::class, 'showMaster'])->name('master');
 Route::get('login', [AuthController::class, 'showFormLogin'])->name('show.login');
 Route::post('login', [AuthController::class, 'login'])->name('user.login');
 Route::get('logout', [AuthController::class, 'logout'])->name('user.logout');
+Route::get('/master', [AuthController::class, 'showMaster'])->name('master');
 
-//Route::group(['middleware' => 'checkLogin'], fun  ction () {
-//Route::middleware('auth')->prefix('test')->group(function () {
 Route::prefix('customer')->group(function () {
     Route::get('index', [UserController::class, 'index'])->name('user.index');
     Route::get('{id}/shows', [UserController::class, 'show'])->name('user.show');
     Route::get('create', [UserController::class, 'create'])->name('user.create');
     Route::post('store', [UserController::class, 'store'])->name('user.store');
     Route::get('{id}/edits', [UserController::class, 'edit'])->name('user.edit');
-//    });
-
 });
 
-
-//Route::get('index', [TaskController::class, 'index'])->name('tasks.index');
 Route::prefix('tasks')->group(function () {
     Route::get('index', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('create', [TaskController::class, 'create'])->name('tasks.create');
@@ -46,7 +40,6 @@ Route::prefix('tasks')->group(function () {
     Route::put('{taskID}/update', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('{photo}/destroy', [TaskController::class, 'destroy'])->name('tasks.destroy');
 });
-//});
 
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.index');

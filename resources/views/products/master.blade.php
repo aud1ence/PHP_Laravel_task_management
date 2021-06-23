@@ -52,6 +52,7 @@
 </nav>
 <!-- Header-->
 <header class="bg-dark py-5">
+{{--    <img src="{{ asset('storage/products/2021-06-23_04:31:01_Robusta.jpg') }}" alt="">--}}
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">@yield('title')</h1>
