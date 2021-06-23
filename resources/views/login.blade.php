@@ -18,9 +18,14 @@
         <div class="card" style="width: 500px; margin-left: 30%; margin-top: 20px">
             @if(\Illuminate\Support\Facades\Session::has('login-fail'))
                 <div class="login-fail">
-                    <p class="text-danger">{{ \Illuminate\Support\Facades\Session::get('login-fail') }}</p>
+                    <p class="text-danger" style="text-align: center">{{ \Illuminate\Support\Facades\Session::get('login-fail') }}</p>
                 </div>
             @endif
+                @if(\Illuminate\Support\Facades\Session::has('not-login'))
+                    <div class="not-login">
+                        <p class="text-danger" style="text-align: center">{{ \Illuminate\Support\Facades\Session::get('not-login') }}</p>
+                    </div>
+                @endif
             <form action="{{ route('user.login') }}" method="post">
                 @csrf
                 <div class="card-content">

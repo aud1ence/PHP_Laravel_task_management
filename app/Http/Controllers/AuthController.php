@@ -19,7 +19,7 @@ class AuthController extends Controller
 
             if ($email == 'test' && $password == '123') {
                 $request->session()->push('login', true);
-                return redirect()->route('tasks.index');
+                return redirect()->route('master');
             }
             $message = 'Login failed. Email or password wrong';
             $request->session()->flash('login-fail', $message);
@@ -27,4 +27,20 @@ class AuthController extends Controller
             return view('login');
         }
 
+        public function showMaster(Request $request)
+        {
+            if ($request->session()->has('login') && $request->session()->get('login')) {
+                return view('master');
+            }
+
+            $message = 'Please login';
+            $request->session()->flash('not-login', $message);
+            return view('login');
+        }
+
+        public function logout(Request $request)
+        {
+            $request->session()->flush();
+            return view('welcome');
+        }
 }

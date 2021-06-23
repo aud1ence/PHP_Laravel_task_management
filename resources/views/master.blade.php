@@ -33,6 +33,8 @@
             <h2 class="subtitle is-4"><a href="{{ route('tasks.create') }}">Add new task</a></h2>
 
             <h2 class="subtitle is-4"><a href="{{ route('tasks.index') }}">Tasks list</a></h2>
+
+            <h2 class="subtitle is-4"><a href="{{ route('user.logout') }}">Logout</a></h2>
         </div>
     </div>
 </div>

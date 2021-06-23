@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/', [AuthController::class, 'showMaster'])->name('master');
 Route::get('login', [AuthController::class, 'showFormLogin'])->name('show.login');
 Route::post('login', [AuthController::class, 'login'])->name('user.login');
+Route::get('logout', [AuthController::class, 'logout'])->name('user.logout');
 
 //Route::group(['middleware' => 'checkLogin'], fun  ction () {
 //Route::middleware('auth')->prefix('test')->group(function () {
@@ -34,9 +35,6 @@ Route::prefix('customer')->group(function () {
 });
 
 
-Route::get('/', function () {
-    return view('master');
-})->name('master');
 //Route::get('index', [TaskController::class, 'index'])->name('tasks.index');
 Route::prefix('tasks')->group(function () {
     Route::get('index', [TaskController::class, 'index'])->name('tasks.index');
