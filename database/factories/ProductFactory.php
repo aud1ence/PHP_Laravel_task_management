@@ -26,6 +26,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->text('20'),
             'price' => $this->faker->numerify(),
             'view_count' => $this->faker->numberBetween('1','10'),
+            'vote' => $this->faker->numberBetween(1,5),
         ];
     }
 }

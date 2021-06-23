@@ -51,4 +51,6 @@ Route::prefix('tasks')->group(function () {
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.index');
     Route::get('{id}/show', [ProductController::class, 'show'])->name('products.show');
+    Route::get('create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('create', [ProductController::class, 'store'])->name('products.store');
 });

@@ -56,16 +56,14 @@ class TaskController extends Controller
                 return redirect()->route('tasks.create');
             }
         } else {
-////            // Lay phan mo rong cua ten anh
+            // Lay phan mo rong cua ten anh
             $fileExtension = $file->getClientOriginalExtension();
-////            // Convert ten anh
+            // Convert ten anh
             $fileName = date('Y-m-d_h:i:s') . "_" . $request->title . ".$fileExtension";
-////            $fileName = time() . "_" . $request->title .  ".$fileExtension";
-//
-////            // Luu anh vao folder uploads
+            // Luu anh vao folder uploads
             $request->file('image')->storeAs('public/uploads', $fileName);
-////            //Chay lenh storage:link de connect storage->public
-////            // Truyen vao Task
+            //Chay lenh storage:link de connect storage->public
+            // Truyen vao Task
             $task->image = $fileName;
         }
         $task->save();
