@@ -46,4 +46,6 @@ Route::prefix('products')->group(function () {
     Route::get('{id}/show', [ProductController::class, 'show'])->name('products.show');
     Route::get('create', [ProductController::class, 'create'])->name('products.create');
     Route::post('create', [ProductController::class, 'store'])->name('products.store');
+    Route::get('{id}/add-to-cart', [ProductController::class, 'addToCart'])->name('products.addToCart');
+    Route::get('cart', [ProductController::class, 'showCart'])->name('products.showCart');
 });

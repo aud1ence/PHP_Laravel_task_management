@@ -48,7 +48,7 @@
                             <div class="row">
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent col">
                                     <div class="text-center"><a class="btn btn-outline-warning mt-auto"
-                                                                href="#">Add to cart</a>
+                                                                href="{{ route('products.addToCart', $product->id) }}">Add to cart</a>
                                     </div>
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent col">

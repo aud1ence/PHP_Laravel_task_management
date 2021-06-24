@@ -14,6 +14,9 @@
     <link href="{{asset('backend/dist/css/styles.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
+{{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">--}}
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
+{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>--}}
     {{--    <link rel="icon" type="image/x-icon" href="{{asset('bootstrap/assets/favicon.ico')}}" />--}}
 {{--    <!-- Bootstrap icons-->--}}
 {{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />--}}
@@ -40,13 +43,17 @@
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex" >
-                <button class="btn btn-outline-dark" type="submit">
+            <form class="d-flex" action="">
+
                     <i class="bi-cart-fill me-1"></i>
                     Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">{{ \Illuminate\Support\Facades\Session::has('cart') ? \Illuminate\Support\Facades\Session::get('cart')->totalQuantity : '' }}</span>
             </form>
+
+            <button class="btn btn-outline-dark" type="button" data-toggle="modal" data-target="#myModal">test
+            </button>
+
+
         </div>
     </div>
 </nav>
@@ -279,5 +286,27 @@
 {{--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>--}}
 {{--<!-- Core theme JS-->--}}
 {{--<script src="{{asset('bootstrap/js/scripts.js')}}"></script>--}}
+<script>$('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })</script>
 </body>
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

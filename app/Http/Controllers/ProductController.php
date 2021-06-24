@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -67,7 +68,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $products = Product::where('id', '>', 5)->take(3)->get();
-        return view('products.show',compact('product', 'products'));
+        return view('products.show', compact('product', 'products'));
     }
 
     public function edit($id)
@@ -83,5 +84,22 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addToCart(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+//        dd($request->session()->get('cart'));
+        return redirect()->route('products.index');
+    }
+
+    public function showCart()
+    {
+        return view('products.showCart');
     }
 }
