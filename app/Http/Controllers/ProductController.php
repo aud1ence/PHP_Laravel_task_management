@@ -47,7 +47,7 @@ class ProductController extends Controller
             // Luu anh vao folder uploads
             $request->file('image')->storeAs('public/products', $fileName);
             //Chay lenh storage:link de connect storage->public
-            // Truyen vao Task
+            // Truyen vao
             $product->image = $fileName;
         }
         $product->save();
@@ -95,11 +95,25 @@ class ProductController extends Controller
 
         $request->session()->put('cart', $cart);
 //        dd($request->session()->get('cart'));
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('message', 'Add to cart success');
     }
 
-    public function showCart()
+    public function showCart(Request $request)
     {
-        return view('products.showCart');
+        if (!Session::has('cart')) {
+            return view('products.showCart', ['products' => null]);
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+//        dd($cart);
+        return view('products.showCart', [
+            'products' => $cart->items,
+            'totalPrice' => $cart->totalPrice,
+            'totalQuantity' => $cart->totalQuantity
+        ]);
+
+//        $cart = $request->session()->get('cart');
+//        dd($cart);
+
     }
 }

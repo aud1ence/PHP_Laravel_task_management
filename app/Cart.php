@@ -37,4 +37,9 @@ class Cart
         $this->totalQuantity++;
         $this->totalPrice += $item->price;
     }
+
+    public function show()
+    {
+
+    }
 }
