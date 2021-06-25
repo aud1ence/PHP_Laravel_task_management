@@ -48,4 +48,5 @@ Route::prefix('products')->group(function () {
     Route::post('create', [ProductController::class, 'store'])->name('products.store');
     Route::get('{id}/add-to-cart', [ProductController::class, 'addToCart'])->name('products.addToCart');
     Route::get('cart', [ProductController::class, 'showCart'])->name('products.showCart');
+    Route::get('{id}/delete', [ProductController::class, 'deleteCart'])->name('products.deleteCart');
 });

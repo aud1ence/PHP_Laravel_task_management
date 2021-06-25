@@ -105,15 +105,26 @@ class ProductController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-//        dd($cart);
         return view('products.showCart', [
             'products' => $cart->items,
             'totalPrice' => $cart->totalPrice,
             'totalQuantity' => $cart->totalQuantity
         ]);
+    }
 
-//        $cart = $request->session()->get('cart');
-//        dd($cart);
+    public function deleteCart(Request $request,$id)
+    {
+        if (Session::has('cart')) {
+            $oldCart = Session::get('cart');
+            $cart = new Cart($oldCart);
+            $cart->delete($id);
+            session()->put('cart', $cart);
+        }
+        return redirect()->route('products.showCart');
+    }
+
+    public function updateCart()
+    {
 
     }
 }

@@ -10,8 +10,8 @@
                             <div class="col">
                                 <h4><b>Shopping Cart</b></h4>
                             </div>
-                            <div class="col align-self-center text-right text-muted">items
-                            </div>
+{{--                            <div class="col align-self-center text-right text-muted"> {{ $totalQuantity }} items--}}
+{{--                            </div>--}}
                         </div>
                     </div>
 
@@ -25,12 +25,16 @@
                                     <div class="row text-muted">Shirt</div>
                                     <div class="row">{{ $product['item']['name'] }}</div>
                                 </div>
-                                <div class="col"><a href="#">-</a><a href="#"
-                                                                     class="border">{{ $product['quantity'] }}</a><a
-                                        href="#">+</a>
+                                <div class="col">
+                                    <a href="#">-</a>
+                                    <a href="#" class="border">{{ $product['quantity'] }}</a>
+                                    <a href="#">+</a>
                                 </div>
-                                <div class="col"> {{ $product['price'] }} &#x20AB;<span class="close">&#10005;</span>
+                                <div class="col"> {{ $product['price'] }} &#x20AB;<span class="close" style="float: right">
+                                       <a href="{{ route('products.deleteCart', $product['item']['id']) }}">&#10005;</a>
+                                    </span>
                                 </div>
+                                <p>{{  $product['item']['id'] }}</p>
                             </div>
                         </div>
                     @endforeach

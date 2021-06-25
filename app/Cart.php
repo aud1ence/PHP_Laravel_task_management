@@ -38,7 +38,27 @@ class Cart
         $this->totalPrice += $item->price;
     }
 
-    public function show()
+    public function delete($id)
+    {
+        if ($this->items) {
+            $productsIntoCart = $this->items;
+            if (array_key_exists($id, $productsIntoCart)) {
+                $priceProductRemove = $productsIntoCart[$id]['price'];
+                $this->totalPrice -= $priceProductRemove;
+
+                $this->totalQuantity -= $productsIntoCart[$id]['quantity'];
+                unset($productsIntoCart[$id]);
+                $this->items = $productsIntoCart;
+//                dd($this->items);
+            }
+
+        } else {
+            $this->totalQuantity = 0;
+        }
+
+    }
+
+    public function update()
     {
 
     }
