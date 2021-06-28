@@ -10,11 +10,8 @@
                             <div class="col">
                                 <h4><b>Shopping Cart</b></h4>
                             </div>
-{{--                            <div class="col align-self-center text-right text-muted"> {{ $totalQuantity }} items--}}
-{{--                            </div>--}}
                         </div>
                     </div>
-
                     @foreach($products as $product)
                         <div class="row border-top border-bottom">
                             <div class="row main align-items-center">
@@ -26,20 +23,29 @@
                                     <div class="row">{{ $product['item']['name'] }}</div>
                                 </div>
                                 <div class="col">
-                                    <a href="#">-</a>
-                                    <a href="#" class="border">{{ $product['quantity'] }}</a>
-                                    <a href="#">+</a>
+                                    <button href="javascript:" onclick="reduce({{ $product['item']['id'] }});">-
+                                    </button>
+{{--                                    @foreach($products as $product)--}}
+                                        <input type="text" style="width: 20%" class="quantity-item-{{ $product['item']['id'] }}"
+                                               value="{{ $product['item']['quantity'] }}">
+                                        {{--                                    </span>--}}
+{{--                                    @endforeach--}}
+                                    <button class="btn-outline-primary increase-btn plus"
+                                            onclick="increase({{ $product['item']['id'] }});">+
+                                    </button>
                                 </div>
-                                <div class="col"> {{ $product['price'] }} &#x20AB;<span class="close" style="float: right">
-                                       <a href="{{ route('products.deleteCart', $product['item']['id']) }}">&#10005;</a>
+
+                                <div class="col">
+                                    <b id="total-price-item">{{ $product['price'] }}</b>
+                                    &#x20AB;
+                                    <span class="close" style="float: right">
+                                       <a href="{{ route('products.deleteCart', $product['item']['id']) }}"
+                                          onclick="return confirm('Are you sure');">&#10005;</a>
                                     </span>
                                 </div>
-                                <p>{{  $product['item']['id'] }}</p>
                             </div>
                         </div>
                     @endforeach
-                    <div class="back-to-shop">
-                    </div>
                 </div>
                 <div class="col-md-4 summary">
                     <div>
@@ -47,11 +53,14 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col" style="padding-left:0;">ITEMS {{ $totalQuantity }}</div>
+                        <div class="col" style="padding-left:0;">ITEMS <b
+                                id="total-quantity-cart">{{ $totalQuantity }}</b></div>
                     </div>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col">TOTAL PRICE</div>
-                        <div class="col text-right">{{ $totalPrice }} &#8363;</div>
+                        <div class="col text-right">
+                            <b id="total-price">{{ $totalPrice }}</b> &#8363;
+                        </div>
                     </div>
                     <button class="btn">CHECKOUT</button>
                     <a href="{{ route('products.index') }}">
@@ -61,4 +70,5 @@
             </div>
         </div>
     </div>
+
 @endsection

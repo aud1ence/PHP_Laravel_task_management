@@ -43,7 +43,7 @@ class ProductController extends Controller
             // Lay phan mo rong cua ten anh
             $fileExtension = $file->getClientOriginalExtension();
             // Convert ten anh
-            $fileName = date('Y-m-d_h:i:s') . "_" . $request->name . ".$fileExtension";
+            $fileName = date('Y-m-d_h:i:s') . "_" . ".$fileExtension";
             // Luu anh vao folder uploads
             $request->file('image')->storeAs('public/products', $fileName);
             //Chay lenh storage:link de connect storage->public
@@ -112,7 +112,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function deleteCart(Request $request,$id)
+    public function deleteCart($id)
     {
         if (Session::has('cart')) {
             $oldCart = Session::get('cart');
@@ -123,8 +123,25 @@ class ProductController extends Controller
         return redirect()->route('products.showCart');
     }
 
-    public function updateCart()
+    public function reduceByOne($id)
     {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceOne($id);
+        if (count($cart->items) > 0) {
+           Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+        return response()->json($cart);
+    }
 
+    public function increaseByOne($id)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->increaseOne($id);
+        Session::put('cart', $cart);
+        return response()->json($cart);
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WeatherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,4 +50,8 @@ Route::prefix('products')->group(function () {
     Route::get('{id}/add-to-cart', [ProductController::class, 'addToCart'])->name('products.addToCart');
     Route::get('cart', [ProductController::class, 'showCart'])->name('products.showCart');
     Route::get('{id}/delete', [ProductController::class, 'deleteCart'])->name('products.deleteCart');
+    Route::get('{id}/reduce', [ProductController::class, 'reduceByOne'])->name('products.reduceByOne');
+    Route::get('{id}/increase', [ProductController::class, 'increaseByOne'])->name('products.increaseByOne');
 });
+
+Route::get('weather/current', [WeatherController::class, 'getCurrentWeather'])->name('weather.getCurrentWeather');

@@ -229,5 +229,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    /*
+        * key openweather service
+        */
 
+    'open_weather_key' => env('WEATHER_KEY')
 ];

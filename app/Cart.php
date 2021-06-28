@@ -51,15 +51,29 @@ class Cart
                 $this->items = $productsIntoCart;
 //                dd($this->items);
             }
-
         } else {
             $this->totalQuantity = 0;
         }
-
     }
 
-    public function update()
+    public function reduceOne($id)
     {
+        $this->items[$id]['quantity']--;
+        $this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+        $this->totalQuantity--;
+        $this->totalPrice -= $this->items[$id]['item']['price'];
 
+        if ($this->items[$id]['quantity'] <= 0) {
+            unset($this->items[$id]);
+        }
     }
+
+    public function increaseOne($id)
+    {
+        $this->items[$id]['quantity']++;
+        $this->items[$id]['price'] += $this->items[$id]['item']['price'];
+        $this->totalQuantity++;
+        $this->totalPrice += $this->items[$id]['item']['price'];
+    }
+
 }
